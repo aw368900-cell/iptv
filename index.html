@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TVFlex – Premium IPTV Provider</title>
+    <meta name="description" content="The best buy IPTV Subscription service. Watch worldwide Premium 12000 Live TV Channels.">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* CSS Reset & Variables */
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: #151c2c;
+            --primary: #486DFB;
+            --primary-hover: #3354d1;
+            --accent: #10B981;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(to bottom, rgba(11, 15, 25, 0.8), rgba(11, 15, 25, 1)), url('https://images.unsplash.com/photo-1593784991095-a205069470b6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #fff, #486DFB);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .hero-list {
+            list-style: none;
+            margin-bottom: 2.5rem;
+            text-align: left;
+            display: inline-block;
+        }
+
+        .hero-list li {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .hero-list i {
+            color: var(--accent);
+            margin-right: 10px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(72, 109, 251, 0.4);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(72, 109, 251, 0.6);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border-color: rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        /* Section Global */
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            font-weight: 600;
+        }
+
+        /* Pricing Section */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+        }
+
+        .pricing-card {
+            background-color: var(--card-bg);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(72, 109, 251, 0.15);
+        }
+
+        .pricing-card.popular::before {
+            content: 'Most Popular';
+            position: absolute;
+            top: 15px;
+            right: -35px;
+            background: var(--accent);
+            color: #fff;
+            padding: 5px 40px;
+            transform: rotate(45deg);
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .pricing-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-muted);
+        }
+
+        .pricing-card .price {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #fff;
+        }
+
+        .pricing-card ul {
+            list-style: none;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .pricing-card ul li {
+            margin-bottom: 0.8rem;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .pricing-card ul i {
+            color: var(--accent);
+            margin-right: 10px;
+        }
+
+        .pricing-card .btn {
+            width: 100%;
+            display: block;
+        }
+
+        /* Features Section */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-box {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            background: rgba(72, 109, 251, 0.1);
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .feature-content h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-content p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Testimonials */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .stars {
+            color: #fbbf24;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-card p {
+            font-style: italic;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-info img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .user-info h5 {
+            font-size: 1rem;
+        }
+
+        .user-info span {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Footer */
+        footer {
+            background: #06090f;
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .btn-group { flex-direction: column; }
+            .btn { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>The Best IPTV Subscription Provider</h1>
+            <p>Enjoy The Best IPTV Subscription Service at affordable prices! Get access to over 12,000 Live TV Channels + VOD that works on all of your favorite devices.</p>
+            
+            <ul class="hero-list">
+                <li><i class="fa-solid fa-circle-check"></i> Thousands of HD Television Channels</li>
+                <li><i class="fa-solid fa-circle-check"></i> Movies and TV Shows Updated weekly</li>
+                <li><i class="fa-solid fa-circle-check"></i> High-Quality Video Streaming</li>
+                <li><i class="fa-solid fa-circle-check"></i> 24/7 Customer Support</li>
+            </ul>
+
+            <div class="btn-group">
+                <a href="#pricing" class="btn btn-primary">Choose Plan <i class="fa-solid fa-arrow-down ml-2"></i></a>
+                <a href="mailto:contact@iptvsubs.site" class="btn btn-outline"><i class="fa-solid fa-envelope"></i> Email Us</a>
+                <a href="https://wa.me/+12035472606" class="btn btn-outline"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="pricing">
+        <h2 class="section-title">Affordable Pricing Plans</h2>
+        <div class="pricing-grid">
+            
+            <div class="pricing-card">
+                <h3>1 Month</h3>
+                <div class="price">$8.99</div>
+                <ul>
+                    <li><i class="fa-solid fa-check"></i> 12,000 Live Channels</li>
+                    <li><i class="fa-solid fa-check"></i> 50,000 Movies & TV Shows</li>
+                    <li><i class="fa-solid fa-check"></i> SD, HD, FHD & 4K Quality</li>
+                    <li><i class="fa-solid fa-check"></i> TV Guide (EPG) Included</li>
+                    <li><i class="fa-solid fa-check"></i> Anti-Freeze Technology</li>
+                </ul>
+                <a href="#" class="btn btn-primary">Order Now</a>
+            </div>
+
+            <div class="pricing-card">
+                <h3>3 Months</h3>
+                <div class="price">$21.99</div>
+                <ul>
+                    <li><i class="fa-solid fa-check"></i> 12,000 Live Channels</li>
+                    <li><i class="fa-solid fa-check"></i> 50,000 Movies & TV Shows</li>
+                    <li><i class="fa-solid fa-check"></i> SD, HD, FHD & 4K Quality</li>
+                    <li><i class="fa-solid fa-check"></i> TV Guide (EPG) Included</li>
+                    <li><i class="fa-solid fa-check"></i> Anti-Freeze Technology</li>
+                </ul>
+                <a href="#" class="btn btn-primary">Order Now</a>
+            </div>
+
+            <div class="pricing-card">
+                <h3>6 Months</h3>
+                <div class="price">$38.99</div>
+                <ul>
+                    <li><i class="fa-solid fa-check"></i> 12,000 Live Channels</li>
+                    <li><i class="fa-solid fa-check"></i> 50,000 Movies & TV Shows</li>
+                    <li><i class="fa-solid fa-check"></i> SD, HD, FHD & 4K Quality</li>
+                    <li><i class="fa-solid fa-check"></i> TV Guide (EPG) Included</li>
+                    <li><i class="fa-solid fa-check"></i> Anti-Freeze Technology</li>
+                </ul>
+                <a href="#" class="btn btn-primary">Order Now</a>
+            </div>
+
+            <div class="pricing-card popular">
+                <h3>12 Months <span style="color:var(--accent); font-size: 0.9rem;">(+2 Mo Free)</span></h3>
+                <div class="price">$61.99</div>
+                <ul>
+                    <li><i class="fa-solid fa-check"></i> 12,000 Live Channels</li>
+                    <li><i class="fa-solid fa-check"></i> 50,000 Movies & TV Shows</li>
+                    <li><i class="fa-solid fa-check"></i> SD, HD, FHD & 4K Quality</li>
+                    <li><i class="fa-solid fa-check"></i> TV Guide (EPG) Included</li>
+                    <li><i class="fa-solid fa-check"></i> Anti-Freeze Technology</li>
+                </ul>
+                <a href="#" class="btn btn-primary">Order Now</a>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Why Choose TVFlex?</h2>
+        <div class="features-grid">
+            
+            <div class="feature-box">
+                <div class="feature-icon"><i class="fa-solid fa-tv"></i></div>
+                <div class="feature-content">
+                    <h4>Thousands of Channels</h4>
+                    <p>Access international IPTV channels from around the world, including all major networks from the US, UK, and Europe.</p>
+                </div>
+            </div>
+
+            <div class="feature-box">
+                <div class="feature-icon"><i class="fa-solid fa-film"></i></div>
+                <div class="feature-content">
+                    <h4>Video On Demand</h4>
+                    <p>Stream full seasons of top TV shows, hit movies, and children’s shows from our comprehensive VOD library.</p>
+                </div>
+            </div>
+
+            <div class="feature-box">
+                <div class="feature-icon"><i class="fa-solid fa-mobile-screen"></i></div>
+                <div class="feature-content">
+                    <h4>Watch on Any Device</h4>
+                    <p>Works on Smart TVs, Android, Amazon Fire Stick, KODI, MAG, and anything else that supports M3U portals.</p>
+                </div>
+            </div>
+
+            <div class="feature-box">
+                <div class="feature-icon"><i class="fa-solid fa-bolt"></i></div>
+                <div class="feature-content">
+                    <h4>Fast Zapping</h4>
+                    <p>Our powerful servers provide an incredible channel zapping time of roughly 0.5 seconds, with zero buffering.</p>
+                </div>
+            </div>
+
+            <div class="feature-box">
+                <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                <div class="feature-content">
+                    <h4>Safe & Secure</h4>
+                    <p>Secure payments with no complicated billing processes. Plus, a 14-day money-back guarantee.</p>
+                </div>
+            </div>
+
+            <div class="feature-box">
+                <div class="feature-icon"><i class="fa-solid fa-headset"></i></div>
+                <div class="feature-content">
+                    <h4>World Class Support</h4>
+                    <p>We offer in-depth tutorials and client support to make installation and streaming quick and simple.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">What Our Customers Say</h2>
+        <div class="testimonials-grid">
+            
+            <div class="testimonial-card">
+                <div class="stars">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p>"Extremely helpful customer support and the channels are exactly what I’m looking for. High quality and no buffering!"</p>
+                <div class="user-info">
+                    <img src="https://ui-avatars.com/api/?name=Ilyass+Amiri&background=486DFB&color=fff" alt="User">
+                    <div>
+                        <h5>Ilyass Amiri</h5>
+                        <span>@ilyass</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="stars">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p>"I was a bit wary of subscribing at first so pumped for the 6 months subscription to see how it was. I was so impressed with the quality."</p>
+                <div class="user-info">
+                    <img src="https://ui-avatars.com/api/?name=Hossein+Shams&background=10B981&color=fff" alt="User">
+                    <div>
+                        <h5>Hossein Shams</h5>
+                        <span>@shamsoft</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="stars">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p>"Large selection of IPTV channels, fast, efficient and it works. Special thanks to the customer service, they helped me set it up."</p>
+                <div class="user-info">
+                    <img src="https://ui-avatars.com/api/?name=Delaney+Faulk&background=eab308&color=fff" alt="User">
+                    <div>
+                        <h5>Delaney Faulk</h5>
+                        <span>@delaney</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <ul class="footer-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Refund Policy</a></li>
+            <li><a href="#">Terms and Conditions</a></li>
+        </ul>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">&copy; 2024 TVFlex. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
