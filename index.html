@@ -3,21 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TVFlex Platinum | Global 4K Streaming</title>
+    <title>TVFlex Platinum | Next-Gen Global Streaming</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
     <style>
         :root {
             --primary: #00ffaa;
-            --primary-dark: #00cc88;
-            --bg-deep: #080a0c;
-            --bg-card: #12151a;
+            --primary-glow: rgba(0, 255, 170, 0.4);
+            --bg-deep: #06080a;
+            --bg-card: #111418;
             --text-main: #f0f2f5;
             --text-dim: #94a3b8;
-            --border: rgba(255, 255, 255, 0.06);
-            --glass: rgba(18, 21, 26, 0.85);
+            --border: rgba(255, 255, 255, 0.08);
+            --glass: rgba(10, 12, 16, 0.85);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; scroll-behavior: smooth; }
@@ -29,189 +30,263 @@
             overflow-x: hidden;
         }
 
+        /* --- UI Elements --- */
         .container { max-width: 1250px; margin: 0 auto; padding: 0 1.5rem; }
-        .emerald-glow { color: var(--primary); text-shadow: 0 0 15px rgba(0, 255, 170, 0.3); }
+        .emerald-glow { color: var(--primary); text-shadow: 0 0 20px var(--primary-glow); }
         .text-center { text-align: center; }
 
         /* --- Floating Nav --- */
         nav {
             position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
-            width: 95%; max-width: 900px; z-index: 1000;
-            background: var(--glass); backdrop-filter: blur(20px);
-            padding: 0.8rem 2rem; border-radius: 100px;
+            width: 95%; max-width: 1000px; z-index: 1000;
+            background: var(--glass); backdrop-filter: blur(25px);
+            padding: 0.8rem 2.5rem; border-radius: 100px;
             border: 1px solid var(--border);
             display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
-        .logo { font-size: 1.4rem; font-weight: 900; color: #fff; text-decoration: none; }
+        .logo { font-size: 1.6rem; font-weight: 900; color: #fff; text-decoration: none; letter-spacing: -1px; }
         .logo span { color: var(--primary); }
         
-        .server-status { font-size: 0.75rem; display: flex; align-items: center; gap: 8px; color: var(--text-dim); }
-        .status-dot { width: 8px; height: 8px; background: var(--primary); border-radius: 50%; box-shadow: 0 0 10px var(--primary); animation: pulse 1.5s infinite; }
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+        .server-status { font-size: 0.7rem; display: flex; align-items: center; gap: 8px; color: var(--text-dim); font-weight: 700; letter-spacing: 1px; }
+        .status-dot { width: 8px; height: 8px; background: var(--primary); border-radius: 50%; box-shadow: 0 0 10px var(--primary); animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.3; transform: scale(1.2); } }
 
         /* --- Hero --- */
-        .hero { padding: 12rem 0 6rem; position: relative; }
-        .hero h1 { font-size: clamp(3rem, 7vw, 5.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 2rem; }
-        .hero p { font-size: 1.25rem; color: var(--text-dim); max-width: 700px; margin-bottom: 3rem; }
+        .hero { padding: 14rem 0 6rem; position: relative; text-align: center; }
+        .hero h1 { font-size: clamp(3.5rem, 8vw, 6rem); font-weight: 900; line-height: 1; margin-bottom: 2rem; letter-spacing: -2px; }
+        .hero p { font-size: 1.3rem; color: var(--text-dim); max-width: 800px; margin: 0 auto 3.5rem; }
 
-        /* --- Bento Grid --- */
-        .bento-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin: 4rem 0; }
-        .bento-item { background: var(--bg-card); border-radius: 32px; border: 1px solid var(--border); padding: 2.5rem; transition: 0.4s; }
-        .bento-item:hover { border-color: var(--primary); transform: translateY(-5px); }
+        /* --- LIVE CHANNEL CAROUSEL --- */
+        .carousel-container { background: rgba(0,0,0,0.4); padding: 3rem 0; border-y: 1px solid var(--border); overflow: hidden; position: relative; }
+        .channel-track { display: flex; width: calc(250px * 14); animation: scroll 30s linear infinite; gap: 60px; align-items: center; }
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-250px * 7)); } }
+        .channel-logo { height: 45px; filter: grayscale(1) brightness(2); opacity: 0.4; transition: 0.4s; cursor: pointer; }
+        .channel-logo:hover { filter: grayscale(0) brightness(1); opacity: 1; transform: scale(1.1); }
+
+        /* --- BENTO GRID --- */
+        .bento-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin: 5rem 0; }
+        .bento-item { background: var(--bg-card); border-radius: 35px; border: 1px solid var(--border); padding: 2.5rem; transition: 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); position: relative; overflow: hidden; }
+        .bento-item:hover { border-color: var(--primary); transform: translateY(-10px); background: #161a20; }
         .bento-large { grid-column: span 2; }
+        .bento-item i { font-size: 2.5rem; color: var(--primary); margin-bottom: 1.5rem; display: block; }
+        .bento-item h3 { font-size: 1.6rem; margin-bottom: 0.8rem; font-weight: 700; }
+        .bento-item p { color: var(--text-dim); font-size: 1rem; }
 
-        /* --- NEW: Countries Section --- */
-        .countries-strip { background: rgba(255,255,255,0.02); padding: 4rem 0; border-y: 1px solid var(--border); overflow: hidden; }
-        .flag-scroll { display: flex; gap: 50px; align-items: center; opacity: 0.6; }
-        .flag-item { display: flex; align-items: center; gap: 10px; white-space: nowrap; font-weight: 600; font-size: 1.1rem; }
-        .flag-item img { width: 30px; border-radius: 4px; }
-
-        /* --- Pricing --- */
-        .pricing-section { padding: 8rem 0; background: #0b0e13; }
+        /* --- PRICING --- */
+        .pricing-section { padding: 8rem 0; background: #080a0c; position: relative; }
         .price-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
-        .price-card { background: var(--bg-deep); padding: 3rem 2rem; border-radius: 40px; border: 1px solid var(--border); transition: 0.4s; position: relative; }
-        .price-card.featured { border: 2px solid var(--primary); background: #161a20; transform: scale(1.05); }
-        .price-amount { font-size: 3.5rem; font-weight: 800; margin: 1rem 0; }
+        .price-card { background: var(--bg-card); padding: 4rem 2rem; border-radius: 45px; border: 1px solid var(--border); transition: 0.4s; position: relative; text-align: center; }
+        .price-card:hover { border-color: var(--primary); transform: translateY(-5px); }
+        .price-card.featured { border: 2px solid var(--primary); background: #1a1f26; transform: scale(1.05); z-index: 2; box-shadow: 0 30px 60px rgba(0, 255, 170, 0.1); }
+        .price-amount { font-size: 4rem; font-weight: 900; margin: 1.5rem 0; letter-spacing: -2px; }
+        .price-amount span { font-size: 1.2rem; color: var(--text-dim); }
+
+        /* --- PAYMENTS & COUNTRIES --- */
+        .payment-strip { display: flex; justify-content: center; gap: 3rem; padding: 4rem 0; font-size: 2.8rem; opacity: 0.4; flex-wrap: wrap; }
+        .payment-strip i:hover { opacity: 1; color: var(--primary); transform: translateY(-5px); transition: 0.3s; }
+        
+        .countries-bar { display: flex; justify-content: center; gap: 20px; padding: 20px; flex-wrap: wrap; opacity: 0.7; }
+        .country-tag { background: #1a1f26; padding: 8px 16px; border-radius: 50px; font-size: 0.9rem; font-weight: 600; border: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
+
+        /* --- SOCIAL PROOF NOTIFICATION --- */
+        #purchase-toast {
+            position: fixed; bottom: 30px; left: 30px; background: #1a1f26; border: 1px solid var(--primary);
+            padding: 18px 25px; border-radius: 20px; display: flex; align-items: center; gap: 15px;
+            z-index: 9999; box-shadow: 0 20px 40px rgba(0,0,0,0.6); transform: translateY(200%); transition: 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            font-size: 0.9rem;
+        }
 
         /* --- Buttons --- */
-        .btn { padding: 1rem 2.5rem; border-radius: 100px; text-decoration: none; font-weight: 600; display: inline-block; transition: 0.3s; border: none; cursor: pointer; }
-        .btn-primary { background: var(--primary); color: #000; }
+        .btn { padding: 1.2rem 3rem; border-radius: 100px; text-decoration: none; font-weight: 800; display: inline-block; transition: 0.4s; border: none; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; }
+        .btn-primary { background: var(--primary); color: #000; box-shadow: 0 10px 30px var(--primary-glow); }
+        .btn-primary:hover { transform: scale(1.05); background: #fff; box-shadow: 0 15px 40px rgba(255,255,255,0.2); }
         .btn-outline { border: 1px solid var(--border); color: #fff; }
+        .btn-outline:hover { background: rgba(255,255,255,0.05); border-color: #fff; }
 
-        /* --- NEW: Payments Bar --- */
-        .payment-methods { display: flex; justify-content: center; gap: 2rem; padding: 2rem 0; font-size: 2.5rem; opacity: 0.5; color: var(--text-main); }
-        .payment-methods i:hover { opacity: 1; color: var(--primary); transform: scale(1.1); transition: 0.3s; }
-
-        /* --- Footer --- */
-        footer { padding: 6rem 0 3rem; background: #050608; border-top: 1px solid var(--border); }
-        .footer-flex { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 3rem; }
+        footer { padding: 8rem 0 4rem; border-top: 1px solid var(--border); }
 
         @media (max-width: 900px) {
             .bento-grid { grid-template-columns: 1fr; }
             .bento-large { grid-column: span 1; }
+            .hero h1 { font-size: 3rem; }
+            #purchase-toast { left: 10px; right: 10px; bottom: 10px; width: calc(100% - 20px); }
         }
     </style>
 </head>
 <body>
 
+    <div id="purchase-toast">
+        <div class="status-dot"></div>
+        <span id="toast-content"></span>
+    </div>
+
     <nav>
         <a href="#" class="logo">TV<span>FLEX</span></a>
         <div class="server-status">
             <div class="status-dot"></div>
-            GLOBAL SERVERS: 100% ONLINE
+            SERVERS: OPTIMIZED
         </div>
-        <a href="#pricing" class="btn-primary" style="padding: 0.5rem 1.2rem; border-radius: 50px; text-decoration: none; color: #000; font-weight: 700; font-size: 0.8rem;">JOIN NOW</a>
+        <a href="#pricing" class="btn-primary" style="padding: 0.6rem 1.5rem; font-size: 0.8rem;">GET ACCESS</a>
     </nav>
 
     <header class="hero container">
-        <h1 class="animate__animated animate__fadeIn">The Future of <br><span class="emerald-glow">Global Media.</span></h1>
-        <p>Premium 4K IPTV infrastructure serving 20+ countries with zero latency. Every channel, every sport, every movie—instantly.</p>
-        <div style="display: flex; gap: 1rem;">
-            <a href="#pricing" class="btn btn-primary">Choose Your Plan</a>
-            <a href="#coverage" class="btn btn-outline">Check Coverage</a>
+        <div class="animate__animated animate__fadeInDown" style="background: rgba(0, 255, 170, 0.1); color: var(--primary); padding: 8px 20px; border-radius: 50px; display: inline-block; font-weight: 700; font-size: 0.8rem; margin-bottom: 2rem;">
+            VOTED #1 IPTV SERVICE 2026
+        </div>
+        <h1 class="animate__animated animate__fadeIn">The Ultimate<br><span class="emerald-glow">Entertainment</span> Engine.</h1>
+        <p>Stream 25,000+ Premium Live Channels and 100,000+ VODs in pure 4K Ultra HD. No buffering. No contracts. Just perfection.</p>
+        <div style="display: flex; gap: 1.5rem; justify-content: center;">
+            <a href="#pricing" class="btn btn-primary">Start Watching Now</a>
+            <a href="https://wa.me/12035472606" class="btn btn-outline"><i class="fa-brands fa-whatsapp"></i> Live Chat</a>
         </div>
     </header>
 
-    <section class="countries-strip" id="coverage">
-        <div class="container">
-            <p class="text-center" style="margin-bottom: 2rem; font-size: 0.9rem; letter-spacing: 2px; color: var(--text-dim);">OPTIMIZED FOR GLOBAL BROADCAST</p>
-            <div class="flag-scroll">
-                <div class="flag-item"><img src="https://flagcdn.com/us.svg"> USA</div>
-                <div class="flag-item"><img src="https://flagcdn.com/gb.svg"> UK & Ireland</div>
-                <div class="flag-item"><img src="https://flagcdn.com/ca.svg"> Canada</div>
-                <div class="flag-item"><img src="https://flagcdn.com/fr.svg"> France</div>
-                <div class="flag-item"><img src="https://flagcdn.com/de.svg"> Germany</div>
-                <div class="flag-item"><img src="https://flagcdn.com/es.svg"> Spain</div>
-                <div class="flag-item"><img src="https://flagcdn.com/it.svg"> Italy</div>
-                <div class="flag-item"><img src="https://flagcdn.com/ae.svg"> UAE</div>
-            </div>
+    <section class="carousel-container">
+        <div class="channel-track">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/21/HBO_logo.svg" class="channel-logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Sky_Sports_logo_2017.svg" class="channel-logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" class="channel-logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/bb/BeIN_Sports_logo.svg" class="channel-logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d2/ESPN_logo.svg" class="channel-logo">
+            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/c/c8/BT_Sport_logo.svg/2560px-BT_Sport_logo.svg.png" class="channel-logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a3/BBC_One_logo_2021.svg" class="channel-logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/21/HBO_logo.svg" class="channel-logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Sky_Sports_logo_2017.svg" class="channel-logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" class="channel-logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/bb/BeIN_Sports_logo.svg" class="channel-logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d2/ESPN_logo.svg" class="channel-logo">
         </div>
     </section>
 
     <section class="container" style="padding: 6rem 0;">
         <div class="bento-grid">
             <div class="bento-item bento-large">
-                <i class="fa-solid fa-earth-americas"></i>
-                <h3>Worldwide Content</h3>
-                <p>Localized channels for Europe, America, and Middle East. No matter where you are, we have your home channels.</p>
+                <i class="fa-solid fa-bolt-lightning"></i>
+                <h3>0.1s Zapping Speed</h3>
+                <p>Engineered with proprietary "Fast-Z" tech. Switch between channels instantly without the annoying black screen or loading wheel.</p>
             </div>
             <div class="bento-item">
-                <i class="fa-solid fa-gauge-high"></i>
-                <h3>10Gbps Pipes</h3>
-                <p>Massive bandwidth for 4K streaming.</p>
+                <i class="fa-solid fa-satellite-dish"></i>
+                <h3>UHD Sports</h3>
+                <p>Every PPV event and major league in 60FPS 4K resolution.</p>
             </div>
             <div class="bento-item">
-                <i class="fa-solid fa-lock"></i>
-                <h3>Safe Stream</h3>
-                <p>AES-256 end-to-end encryption.</p>
+                <i class="fa-solid fa-shield-virus"></i>
+                <h3>VPN Shield</h3>
+                <p>Integrated anti-throttling technology hides your traffic from ISPs.</p>
+            </div>
+            <div class="bento-item bento-large">
+                <i class="fa-solid fa-tv"></i>
+                <h3>Multi-Platform Native</h3>
+                <p>Start on your Firestick, finish on your iPhone. Our cloud-sync technology keeps your "Recently Watched" and "Favorites" updated everywhere.</p>
             </div>
         </div>
     </section>
 
     <section class="pricing-section" id="pricing">
         <div class="container">
-            <h2 class="text-center" style="font-size: 3rem; margin-bottom: 4rem;">Choose Your <span class="emerald-glow">Tier</span></h2>
+            <h2 class="text-center" style="font-size: 3.5rem; margin-bottom: 5rem;">Select Your <span class="emerald-glow">Power Tier</span></h2>
             <div class="price-grid">
                 <div class="price-card">
-                    <h4>Basic</h4>
-                    <div class="price-amount">$10<span> /1 mo</span></div>
-                    <p style="color:var(--text-dim); margin-bottom: 2rem;">Full Access, 1 Device.</p>
-                    <a href="#" class="btn btn-outline" style="width: 100%;">Select</a>
+                    <h4>Basic Explorer</h4>
+                    <div class="price-amount">$10<span> /1 Mo</span></div>
+                    <ul style="list-style: none; color: var(--text-dim); margin-bottom: 2.5rem; text-align: left;">
+                        <li style="margin-bottom: 10px;"><i class="fa-solid fa-check" style="color:var(--primary)"></i> 25K Live Channels</li>
+                        <li style="margin-bottom: 10px;"><i class="fa-solid fa-check" style="color:var(--primary)"></i> SD/FHD/4K Access</li>
+                        <li style="margin-bottom: 10px;"><i class="fa-solid fa-check" style="color:var(--primary)"></i> 24/7 Technical Support</li>
+                    </ul>
+                    <a href="https://wa.me/12035472606" class="btn btn-outline" style="width: 100%;">Select Tier</a>
                 </div>
-                <div class="price-card">
-                    <h4>Quarterly</h4>
-                    <div class="price-amount">$25<span> /3 mo</span></div>
-                    <p style="color:var(--text-dim); margin-bottom: 2rem;">Savings of 20%.</p>
-                    <a href="#" class="btn btn-outline" style="width: 100%;">Select</a>
-                </div>
+
                 <div class="price-card featured">
-                    <div style="background:var(--primary); color:#000; position:absolute; top:-15px; left:50%; transform:translateX(-50%); padding:4px 12px; border-radius:10px; font-weight:900; font-size:0.7rem;">MOST POPULAR</div>
-                    <h4>Yearly</h4>
-                    <div class="price-amount">$55<span> /12 mo</span></div>
-                    <p style="margin-bottom: 2rem;">+3 Months Free Bonus.</p>
-                    <a href="#" class="btn btn-primary" style="width: 100%;">Get Offer</a>
+                    <div style="background:var(--primary); color:#000; position:absolute; top:-15px; left:50%; transform:translateX(-50%); padding:5px 20px; border-radius:10px; font-weight:900; font-size:0.75rem; letter-spacing: 1px;">MOST POPULAR</div>
+                    <h4>Platinum Annual</h4>
+                    <div class="price-amount">$55<span> /12 Mo</span></div>
+                    <ul style="list-style: none; margin-bottom: 2.5rem; text-align: left;">
+                        <li style="margin-bottom: 10px;"><i class="fa-solid fa-star" style="color:var(--primary)"></i> 12 Months + 3 FREE</li>
+                        <li style="margin-bottom: 10px;"><i class="fa-solid fa-star" style="color:var(--primary)"></i> Anti-Freeze v6.0 Pro</li>
+                        <li style="margin-bottom: 10px;"><i class="fa-solid fa-star" style="color:var(--primary)"></i> Exclusive Sports Pack</li>
+                    </ul>
+                    <a href="https://wa.me/12035472606" class="btn btn-primary" style="width: 100%;">GET BEST VALUE</a>
                 </div>
+
                 <div class="price-card">
-                    <h4>Ultimate</h4>
-                    <div class="price-amount">$95<span> /24 mo</span></div>
-                    <p style="color:var(--text-dim); margin-bottom: 2rem;">2 Simultaneous Streams.</p>
-                    <a href="#" class="btn btn-outline" style="width: 100%;">Select</a>
+                    <h4>Ultimate Life</h4>
+                    <div class="price-amount">$95<span> /24 Mo</span></div>
+                    <ul style="list-style: none; color: var(--text-dim); margin-bottom: 2.5rem; text-align: left;">
+                        <li style="margin-bottom: 10px;"><i class="fa-solid fa-check" style="color:var(--primary)"></i> 2 Concurrent Streams</li>
+                        <li style="margin-bottom: 10px;"><i class="fa-solid fa-check" style="color:var(--primary)"></i> Private VIP Servers</li>
+                        <li style="margin-bottom: 10px;"><i class="fa-solid fa-check" style="color:var(--primary)"></i> All Updates Included</li>
+                    </ul>
+                    <a href="https://wa.me/12035472606" class="btn btn-outline" style="width: 100%;">Select Tier</a>
                 </div>
             </div>
 
-            <div style="margin-top: 6rem;">
-                <p class="text-center" style="color:var(--text-dim); font-size: 0.8rem; letter-spacing: 1px; margin-bottom: 2rem;">SECURE CHECKOUT SUPPORTED BY</p>
-                <div class="payment-methods">
-                    <i class="fa-brands fa-cc-visa"></i>
-                    <i class="fa-brands fa-cc-mastercard"></i>
-                    <i class="fa-brands fa-cc-paypal"></i>
-                    <i class="fa-brands fa-bitcoin"></i>
-                    <i class="fa-brands fa-apple-pay"></i>
-                    <i class="fa-brands fa-google-pay"></i>
-                </div>
+            <div class="payment-strip">
+                <i class="fa-brands fa-cc-visa"></i>
+                <i class="fa-brands fa-cc-mastercard"></i>
+                <i class="fa-brands fa-cc-paypal"></i>
+                <i class="fa-brands fa-bitcoin"></i>
+                <i class="fa-brands fa-apple-pay"></i>
+                <i class="fa-brands fa-google-pay"></i>
+            </div>
+            
+            <p class="text-center" style="color: var(--text-dim); font-size: 0.9rem;">Global Coverage in:</p>
+            <div class="countries-bar">
+                <span class="country-tag">🇺🇸 USA</span>
+                <span class="country-tag">🇬🇧 UK</span>
+                <span class="country-tag">🇨🇦 Canada</span>
+                <span class="country-tag">🇫🇷 France</span>
+                <span class="country-tag">🇦🇪 UAE</span>
+                <span class="country-tag">🇩🇪 Germany</span>
             </div>
         </div>
     </section>
 
     <footer>
-        <div class="container footer-flex">
-            <div>
+        <div class="container" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 4rem;">
+            <div style="max-width: 350px;">
                 <a href="#" class="logo">TV<span>FLEX</span></a>
-                <p style="color: var(--text-dim); margin-top: 1rem; max-width: 300px;">The industry leader in high-performance digital broadcasting. Experience the TVFlex difference.</p>
-            </div>
-            <div>
-                <h5 style="margin-bottom: 1.5rem; color: var(--primary);">Navigation</h5>
-                <a href="#" style="display: block; color: var(--text-dim); text-decoration: none; margin-bottom: 0.5rem;">Setup Guide</a>
-                <a href="#" style="display: block; color: var(--text-dim); text-decoration: none; margin-bottom: 0.5rem;">Channel List</a>
-                <a href="#" style="display: block; color: var(--text-dim); text-decoration: none; margin-bottom: 0.5rem;">Support</a>
+                <p style="color: var(--text-dim); margin-top: 1.5rem;">Leading the digital broadcast revolution with ultra-low latency technology. Stream the future today.</p>
             </div>
             <div>
                 <h5 style="margin-bottom: 1.5rem; color: var(--primary);">Contact</h5>
-                <p style="color: var(--text-dim);">contact@iptvsubs.site</p>
-                <p style="color: var(--text-dim);">WhatsApp: +1 203 547 2606</p>
+                <p style="color: var(--text-dim);">contact@gettvflex.site</p>
+                <p style="color: var(--text-dim);">WhatsApp: +1 (203) 547-2606</p>
             </div>
         </div>
+        <div class="container" style="margin-top: 5rem; text-align: center; color: #222; font-size: 0.8rem; border-top: 1px solid #111; padding-top: 2rem;">
+            &copy; 2026 TVFlex Media. No cable, just pure flex.
+        </div>
     </footer>
+
+    <script>
+        // Social Proof Notification Logic
+        const locations = ["London", "New York", "Paris", "Berlin", "Dubai", "Toronto", "Sydney", "Madrid"];
+        const plans = ["Platinum Annual", "Ultimate Life Plan", "Basic Explorer"];
+        const toast = document.getElementById('purchase-toast');
+        const content = document.getElementById('toast-content');
+
+        function showNotification() {
+            const loc = locations[Math.floor(Math.random() * locations.length)];
+            const plan = plans[Math.floor(Math.random() * plans.length)];
+            
+            content.innerHTML = `Someone in <b>${loc}</b> just subscribed to <b>${plan}</b> 🔥`;
+            
+            toast.style.transform = "translateY(0)";
+            
+            setTimeout(() => {
+                toast.style.transform = "translateY(200%)";
+            }, 6000);
+        }
+
+        // Show first notification after 5 seconds
+        setTimeout(() => {
+            showNotification();
+            setInterval(showNotification, 18000); // Every 18 seconds
+        }, 5000);
+    </script>
 
 </body>
 </html>
