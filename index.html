@@ -3,382 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TVFlex – Premium IPTV & Instant Delivery</title>
-    <meta name="description" content="The best buy IPTV Subscription service. Watch worldwide Premium 12000 Live TV Channels with instant delivery.">
+    <title>TVFlex | Premium IPTV Streaming & Instant Delivery</title>
+    <meta name="description" content="The world's #1 IPTV service. 18,000+ Channels, 60,000+ VODs in 4K. Works on Firestick, Smart TV, and Mobile.">
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* CSS Reset & Variables */
         :root {
-            --bg-base: #000000;
-            --bg-surface: #111319;
-            --bg-surface-hover: #1a1d24;
-            --primary: #e50914; /* Cinematic Red */
-            --primary-hover: #f40612;
-            --accent: #4f46e5; /* Indigo */
+            --bg-base: #050505;
+            --bg-surface: #0f1117;
+            --bg-card: #161922;
+            --primary: #e50914; 
+            --primary-glow: rgba(229, 9, 20, 0.3);
+            --accent: #6366f1;
             --text-main: #ffffff;
-            --text-muted: #a3a3a3;
-            --border-color: rgba(255, 255, 255, 0.1);
-            --transition: all 0.3s ease;
+            --text-muted: #9ca3af;
+            --border: rgba(255, 255, 255, 0.08);
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
 
-        body {
-            background-color: var(--bg-base);
-            color: var(--text-main);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+        body { background-color: var(--bg-base); color: var(--text-main); line-height: 1.7; overflow-x: hidden; }
 
-        /* Utility Classes */
-        .container {
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
         .text-center { text-align: center; }
-        .text-gradient {
-            background: linear-gradient(90deg, #ff4b4b, #6366f1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+        .text-gradient { background: linear-gradient(135deg, #fff 30%, #e50914 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
         /* Buttons */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            padding: 1rem 2rem;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: var(--transition);
-            cursor: pointer;
-            border: none;
-        }
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.75rem; padding: 1rem 2.5rem; border-radius: 50px; font-size: 1rem; font-weight: 700; text-decoration: none; transition: var(--transition); cursor: pointer; border: none; }
+        .btn-primary { background: var(--primary); color: #fff; box-shadow: 0 10px 20px var(--primary-glow); }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 30px var(--primary-glow); background: #ff0f1b; }
+        .btn-whatsapp { background: #25D366; color: #fff; }
+        .btn-whatsapp:hover { background: #1da851; transform: translateY(-3px); }
 
-        .btn-primary {
-            background-color: var(--primary);
-            color: #fff;
-            box-shadow: 0 4px 14px rgba(229, 9, 20, 0.4);
-        }
-
-        .btn-primary:hover {
-            background-color: var(--primary-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(229, 9, 20, 0.6);
-        }
-
-        .btn-outline {
-            background-color: transparent;
-            border: 2px solid var(--border-color);
-            color: var(--text-main);
-        }
-
-        .btn-outline:hover {
-            border-color: var(--text-main);
-            background-color: rgba(255, 255, 255, 0.05);
-        }
-
-        .btn-whatsapp {
-            background-color: #25D366;
-            color: #fff;
-        }
-
-        .btn-whatsapp:hover {
-            background-color: #1ebe57;
-            transform: translateY(-2px);
-        }
-
-        /* Navbar */
-        header {
-            padding: 1.5rem 0;
-            border-bottom: 1px solid var(--border-color);
-            background-color: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 100;
-        }
-
-        .nav-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 900;
-            letter-spacing: -1px;
-            text-decoration: none;
-            color: #fff;
-        }
-
+        /* Navigation */
+        header { padding: 1.25rem 0; background: rgba(5, 5, 5, 0.8); backdrop-filter: blur(15px); position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid var(--border); }
+        .nav-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.6rem; font-weight: 900; color: #fff; text-decoration: none; letter-spacing: -1px; }
         .logo span { color: var(--primary); }
 
         /* Hero Section */
-        .hero {
-            padding: 12rem 0 6rem;
-            background: radial-gradient(circle at 50% 0%, rgba(229, 9, 20, 0.15) 0%, transparent 60%);
-        }
+        .hero { position: relative; padding: 12rem 0 8rem; background: radial-gradient(circle at 80% 20%, rgba(229, 9, 20, 0.1), transparent 40%), radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.1), transparent 40%); }
+        .hero-image { width: 100%; max-width: 900px; margin: 4rem auto 0; border-radius: 20px; border: 1px solid var(--border); box-shadow: 0 40px 100px rgba(0,0,0,0.8); display: block; }
+        .hero h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1; font-weight: 900; margin-bottom: 1.5rem; }
+        .hero p { font-size: 1.25rem; color: var(--text-muted); max-width: 750px; margin: 0 auto 3rem; }
 
-        .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4.5rem);
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+        /* Stats Section */
+        .stats-bar { background: var(--bg-surface); padding: 4rem 0; border-y: 1px solid var(--border); }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; }
+        .stat-item h2 { font-size: 2.5rem; color: var(--primary); }
+        .stat-item p { color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
 
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--text-muted);
-            max-width: 700px;
-            margin: 0 auto 2.5rem;
-        }
+        /* Image + Text Section */
+        .split-section { padding: 8rem 0; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .split-image img { width: 100%; border-radius: 20px; border: 1px solid var(--border); }
+        .split-content h2 { font-size: 2.5rem; margin-bottom: 1.5rem; }
+        
+        /* Features */
+        .features { padding: 8rem 0; background: var(--bg-base); }
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+        .feature-card { background: var(--bg-card); padding: 3rem 2rem; border-radius: 24px; border: 1px solid var(--border); transition: var(--transition); }
+        .feature-card:hover { border-color: var(--primary); transform: translateY(-10px); }
+        .feature-card i { font-size: 2.5rem; color: var(--primary); margin-bottom: 1.5rem; }
 
-        .hero-cta {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
+        /* Pricing */
+        .pricing { padding: 8rem 0; background: var(--bg-surface); }
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; }
+        .price-card { background: var(--bg-base); padding: 3rem 2rem; border-radius: 24px; border: 1px solid var(--border); position: relative; transition: var(--transition); }
+        .price-card.popular { border: 2px solid var(--primary); transform: scale(1.05); }
+        .badge { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--primary); padding: 4px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: 800; }
+        .price-val { font-size: 3.5rem; font-weight: 900; margin: 1rem 0; }
+        .price-val span { font-size: 1rem; color: var(--text-muted); }
+        .price-list { list-style: none; text-align: left; margin: 2rem 0; }
+        .price-list li { margin-bottom: 0.8rem; display: flex; align-items: center; gap: 10px; font-size: 0.95rem; }
+        .price-list i { color: #25D366; }
 
-        /* Trust Banner (Payments & Delivery) */
-        .trust-banner {
-            background-color: var(--bg-surface);
-            border-top: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
-            padding: 3rem 0;
-            margin-bottom: 5rem;
-        }
+        /* FAQ Section */
+        .faq-section { padding: 8rem 0; max-width: 800px; margin: 0 auto; }
+        .faq-item { background: var(--bg-card); border-radius: 12px; margin-bottom: 1rem; padding: 1.5rem; border: 1px solid var(--border); }
+        .faq-item h4 { margin-bottom: 0.5rem; color: var(--primary); }
 
-        .trust-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-            text-align: center;
-        }
-
-        .trust-item i {
-            font-size: 3rem;
-            color: var(--accent);
-            margin-bottom: 1rem;
-        }
-
-        .trust-item h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .trust-item p {
-            color: var(--text-muted);
-        }
-
-        .payment-icons {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 1rem;
-            font-size: 2rem;
-            color: var(--text-muted);
-        }
-
-        /* Features Section */
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: var(--text-muted);
-            margin-bottom: 4rem;
-            font-size: 1.1rem;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 6rem;
-        }
-
-        .feature-card {
-            background: var(--bg-surface);
-            padding: 2rem;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            transition: var(--transition);
-        }
-
-        .feature-card:hover {
-            background: var(--bg-surface-hover);
-            transform: translateY(-5px);
-            border-color: rgba(255, 255, 255, 0.3);
-        }
-
-        .feature-card i {
-            font-size: 2rem;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-        }
-
-        .feature-card h4 {
-            font-size: 1.25rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .feature-card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        /* Pricing Section - 4 Packages */
-        .pricing-section {
-            padding: 5rem 0;
-            background-color: var(--bg-surface);
-        }
-
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-        }
-
-        .pricing-card {
-            background: var(--bg-base);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 2.5rem 2rem;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            transition: var(--transition);
-        }
-
-        .pricing-card:hover {
-            border-color: var(--primary);
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-        }
-
-        .pricing-card.highlight {
-            border: 2px solid var(--accent);
-            background: linear-gradient(180deg, rgba(79, 70, 229, 0.05) 0%, rgba(0,0,0,1) 100%);
-        }
-
-        .badge {
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--accent);
-            color: #fff;
-            padding: 0.25rem 1rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            white-space: nowrap;
-        }
-
-        .pricing-card h3 {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 1rem;
-        }
-
-        .pricing-card .price {
-            font-size: 3rem;
-            font-weight: 900;
-            margin-bottom: 1.5rem;
-            color: #fff;
-        }
-
-        .pricing-card .price span {
-            font-size: 1rem;
-            color: var(--text-muted);
-            font-weight: 400;
-        }
-
-        .pricing-list {
-            list-style: none;
-            margin-bottom: 2rem;
-            flex-grow: 1;
-        }
-
-        .pricing-list li {
-            margin-bottom: 1rem;
-            font-size: 0.95rem;
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            color: #ddd;
-        }
-
-        .pricing-list i {
-            color: #25D366;
-            margin-top: 4px;
-        }
-
-        .pricing-card .btn {
-            width: 100%;
-        }
-
-        /* Footer */
-        footer {
-            padding: 3rem 0;
-            text-align: center;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .footer-text {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        .footer-secure {
-            color: #fff;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 1rem;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1100px) {
-            .pricing-grid { grid-template-columns: repeat(2, 1fr); }
-        }
+        footer { padding: 5rem 0; background: #000; border-top: 1px solid var(--border); text-align: center; }
+        .payment-methods { font-size: 2.5rem; display: flex; justify-content: center; gap: 20px; margin: 2rem 0; color: var(--text-muted); }
 
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.2rem; }
-            .pricing-grid { grid-template-columns: 1fr; }
-            .hero-cta { flex-direction: column; }
-            .hero-cta .btn { width: 100%; }
+            .split-section { grid-template-columns: 1fr; text-align: center; }
+            .hero h1 { font-size: 2.8rem; }
+            .price-card.popular { transform: scale(1); }
         }
     </style>
 </head>
@@ -386,146 +99,142 @@
 
     <header>
         <div class="container nav-content">
-            <a href="#" class="logo">TV<span>Flex</span></a>
-            <a href="#pricing" class="btn btn-primary" style="padding: 0.5rem 1.5rem; font-size: 0.9rem;">See Plans</a>
+            <a href="#" class="logo">TV<span>FLEX</span></a>
+            <a href="#pricing" class="btn btn-primary" style="padding: 0.6rem 1.5rem; border-radius: 8px;">Get Started</a>
         </div>
     </header>
 
-    <section class="hero text-center container">
-        <h1>The Ultimate <span class="text-gradient">Entertainment</span> Experience</h1>
-        <p>Unlock 12,000+ Premium Live TV Channels, 50,000+ Movies & Series. Enjoy buffer-free streaming on all your favorite devices with zero hidden fees.</p>
-        
-        <div class="hero-cta">
-            <a href="#pricing" class="btn btn-primary"><i class="fa-solid fa-bolt"></i> Get Instant Access</a>
-            <a href="https://wa.me/+12035472606" class="btn btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp Support</a>
+    <section class="hero container text-center">
+        <h1>Stop Paying For <br><span class="text-gradient">Expensive Cable TV</span></h1>
+        <p>Stream over 18,000 Live Channels and 60,000+ Movies in stunning 4K Quality. High-speed servers, no buffering, and instant activation.</p>
+        <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+            <a href="#pricing" class="btn btn-primary"><i class="fa-solid fa-play"></i> Start Your Plan</a>
+            <a href="https://wa.me/+12035472606" class="btn btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> Chat With Support</a>
+        </div>
+        <img src="https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&q=80&w=1200" alt="IPTV Dashboard" class="hero-image">
+    </section>
+
+    <section class="stats-bar">
+        <div class="container stats-grid text-center">
+            <div class="stat-item"><h2>18K+</h2><p>Live Channels</p></div>
+            <div class="stat-item"><h2>60K+</h2><p>VOD Library</p></div>
+            <div class="stat-item"><h2>99.9%</h2><p>Uptime Rate</p></div>
+            <div class="stat-item"><h2>24/7</h2><p>Live Support</p></div>
         </div>
     </section>
 
-    <div class="trust-banner">
-        <div class="container trust-grid">
-            
-            <div class="trust-item">
-                <i class="fa-solid fa-paper-plane"></i>
-                <h3>Instant Delivery</h3>
-                <p>No waiting around! Once your payment is complete, your login credentials are delivered instantly to your email inbox and WhatsApp.</p>
-            </div>
-
-            <div class="trust-item">
-                <i class="fa-solid fa-shield-halved"></i>
-                <h3>We Accept All Payments</h3>
-                <p>100% secure checkout. We accept all mode of payments including Credit/Debit Cards, PayPal, and Cryptocurrency.</p>
-                <div class="payment-icons">
-                    <i class="fa-brands fa-cc-visa"></i>
-                    <i class="fa-brands fa-cc-mastercard"></i>
-                    <i class="fa-brands fa-cc-amex"></i>
-                    <i class="fa-brands fa-cc-paypal"></i>
-                    <i class="fa-brands fa-bitcoin"></i>
-                </div>
-            </div>
-
+    <section class="container split-section">
+        <div class="split-image">
+            <img src="https://images.unsplash.com/photo-1509281373149-e957c6296406?auto=format&fit=crop&q=80&w=800" alt="Sports Streaming">
         </div>
-    </div>
+        <div class="split-content">
+            <h2>The Home Of <span style="color:var(--primary)">Live Sports</span></h2>
+            <p>Never miss a game again. Access all major sports networks including Sky Sports, BT Sport, Bein Sports, ESPN, and PPV Events in Full HD and 4K quality.</p>
+            <ul class="price-list" style="margin-top: 1.5rem;">
+                <li><i class="fa-solid fa-circle-check"></i> All Premier League Games</li>
+                <li><i class="fa-solid fa-circle-check"></i> NBA, NFL, MLB & NHL Season Pass</li>
+                <li><i class="fa-solid fa-circle-check"></i> Formula 1 & MotoGP Coverage</li>
+            </ul>
+        </div>
+    </section>
 
-    <section class="container">
-        <h2 class="section-title">Everything You Need</h2>
-        <p class="section-subtitle">Premium features designed for the ultimate cord-cutting experience.</p>
-        
-        <div class="features-grid">
+    <section class="features container text-center" id="features">
+        <h2 style="font-size: 2.5rem; margin-bottom: 3rem;">Why Choose TVFlex?</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <i class="fa-solid fa-bolt-lightning"></i>
+                <h3>Instant Setup</h3>
+                <p>Receive your login details automatically within 5-10 minutes of your purchase.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fa-solid fa-microchip"></i>
+                <h3>Anti-Freeze 5.0</h3>
+                <p>Our proprietary technology ensures smooth streaming even on low-speed internet.</p>
+            </div>
             <div class="feature-card">
                 <i class="fa-solid fa-tv"></i>
-                <h4>12,000+ Live Channels</h4>
-                <p>Global coverage including US, UK, Canada, Sports, News, and Premium Entertainment.</p>
-            </div>
-            <div class="feature-card">
-                <i class="fa-solid fa-film"></i>
-                <h4>Massive VOD Library</h4>
-                <p>Over 50,000 movies and TV series on demand, updated weekly with the latest releases.</p>
-            </div>
-            <div class="feature-card">
-                <i class="fa-solid fa-gauge-high"></i>
-                <h4>Anti-Freeze Technology</h4>
-                <p>Our powerful servers guarantee 99.9% uptime with ultra-fast zapping and zero buffering.</p>
-            </div>
-            <div class="feature-card">
-                <i class="fa-solid fa-mobile-screen"></i>
-                <h4>Works on Any Device</h4>
-                <p>Compatible with Smart TVs, Firestick, Android Box, Apple TV, MAG, and Smartphones.</p>
+                <h3>Multi-Device</h3>
+                <p>Compatible with Firestick, MagBox, Android, iOS, Smart TVs, and Windows.</p>
             </div>
         </div>
     </section>
 
-    <section class="pricing-section" id="pricing">
-        <div class="container">
-            <h2 class="section-title">Choose Your Subscription</h2>
-            <p class="section-subtitle">Instant Delivery to your Email upon purchase.</p>
-
+    <section class="pricing" id="pricing">
+        <div class="container text-center">
+            <h2 style="font-size: 3rem; margin-bottom: 1rem;">Simple Pricing</h2>
+            <p style="color: var(--text-muted); margin-bottom: 4rem;">Premium quality, affordable prices. No hidden fees.</p>
+            
             <div class="pricing-grid">
-                
-                <div class="pricing-card">
-                    <h3>1 Month</h3>
-                    <div class="price">$8.99 <span>/mo</span></div>
-                    <ul class="pricing-list">
-                        <li><i class="fa-solid fa-check"></i> 12,000+ Live Channels</li>
-                        <li><i class="fa-solid fa-check"></i> 50,000+ Movies & Series</li>
-                        <li><i class="fa-solid fa-check"></i> Up to 4K & FHD Quality</li>
-                        <li><i class="fa-solid fa-check"></i> TV Guide (EPG)</li>
-                        <li><i class="fa-solid fa-check"></i> Instant Delivery</li>
+                <div class="price-card">
+                    <h3>Basic</h3>
+                    <div class="price-val">$8.99 <span>/1 Mo</span></div>
+                    <ul class="price-list">
+                        <li><i class="fa-solid fa-check"></i> 18,000+ Channels</li>
+                        <li><i class="fa-solid fa-check"></i> 4K / UHD / HD Quality</li>
+                        <li><i class="fa-solid fa-check"></i> All Devices Supported</li>
+                        <li><i class="fa-solid fa-check"></i> 24/7 Support</li>
                     </ul>
-                    <a href="mailto:contact@iptvsubs.site?subject=Order 1 Month Plan" class="btn btn-outline">Order Now</a>
+                    <a href="mailto:contact@iptvsubs.site?subject=1 Month" class="btn btn-primary" style="width:100%">Buy Now</a>
                 </div>
 
-                <div class="pricing-card">
-                    <h3>3 Months</h3>
-                    <div class="price">$21.99 <span>/total</span></div>
-                    <ul class="pricing-list">
-                        <li><i class="fa-solid fa-check"></i> 12,000+ Live Channels</li>
-                        <li><i class="fa-solid fa-check"></i> 50,000+ Movies & Series</li>
-                        <li><i class="fa-solid fa-check"></i> Up to 4K & FHD Quality</li>
-                        <li><i class="fa-solid fa-check"></i> TV Guide (EPG)</li>
-                        <li><i class="fa-solid fa-check"></i> Instant Delivery</li>
+                <div class="price-card popular">
+                    <div class="badge">MOST POPULAR</div>
+                    <h3>Standard</h3>
+                    <div class="price-val">$38.99 <span>/6 Mo</span></div>
+                    <ul class="price-list">
+                        <li><i class="fa-solid fa-check"></i> Everything in Basic</li>
+                        <li><i class="fa-solid fa-check"></i> Anti-Freeze Tech</li>
+                        <li><i class="fa-solid fa-check"></i> EPG TV Guide</li>
+                        <li><i class="fa-solid fa-check"></i> Huge Savings</li>
                     </ul>
-                    <a href="mailto:contact@iptvsubs.site?subject=Order 3 Months Plan" class="btn btn-outline">Order Now</a>
+                    <a href="mailto:contact@iptvsubs.site?subject=6 Months" class="btn btn-primary" style="width:100%">Buy Now</a>
                 </div>
 
-                <div class="pricing-card">
-                    <h3>6 Months</h3>
-                    <div class="price">$38.99 <span>/total</span></div>
-                    <ul class="pricing-list">
-                        <li><i class="fa-solid fa-check"></i> 12,000+ Live Channels</li>
-                        <li><i class="fa-solid fa-check"></i> 50,000+ Movies & Series</li>
-                        <li><i class="fa-solid fa-check"></i> Up to 4K & FHD Quality</li>
-                        <li><i class="fa-solid fa-check"></i> TV Guide (EPG)</li>
-                        <li><i class="fa-solid fa-check"></i> Instant Delivery</li>
+                <div class="price-card">
+                    <div class="badge" style="background: #6366f1;">BEST VALUE</div>
+                    <h3>Premium</h3>
+                    <div class="price-val">$61.99 <span>/12 Mo</span></div>
+                    <ul class="price-list">
+                        <li><i class="fa-solid fa-check"></i> Everything in Standard</li>
+                        <li><i class="fa-solid fa-check"></i> VIP Priority Support</li>
+                        <li><i class="fa-solid fa-check"></i> 2 Extra Months Free</li>
+                        <li><i class="fa-solid fa-check"></i> Adult Channels (Optional)</li>
                     </ul>
-                    <a href="mailto:contact@iptvsubs.site?subject=Order 6 Months Plan" class="btn btn-outline">Order Now</a>
+                    <a href="mailto:contact@iptvsubs.site?subject=12 Months" class="btn btn-primary" style="width:100%">Buy Now</a>
                 </div>
-
-                <div class="pricing-card highlight">
-                    <div class="badge">BEST VALUE + 2 MONTHS FREE</div>
-                    <h3 style="color: var(--accent);">12 Months</h3>
-                    <div class="price">$61.99 <span>/yr</span></div>
-                    <ul class="pricing-list">
-                        <li><i class="fa-solid fa-check"></i> 12,000+ Live Channels</li>
-                        <li><i class="fa-solid fa-check"></i> 50,000+ Movies & Series</li>
-                        <li><i class="fa-solid fa-check"></i> Up to 4K & FHD Quality</li>
-                        <li><i class="fa-solid fa-check"></i> TV Guide (EPG)</li>
-                        <li><i class="fa-solid fa-check"></i> Premium VIP Support</li>
-                        <li><i class="fa-solid fa-check"></i> Instant Delivery</li>
-                    </ul>
-                    <a href="mailto:contact@iptvsubs.site?subject=Order 12 Months VIP Plan" class="btn btn-primary">Order Now</a>
-                </div>
-
             </div>
+        </div>
+    </section>
+
+    <section class="container faq-section">
+        <h2 class="text-center" style="margin-bottom: 3rem;">Frequently Asked Questions</h2>
+        <div class="faq-item">
+            <h4>How long does delivery take?</h4>
+            <p>Once the payment is confirmed, you will receive your credentials via Email and WhatsApp within 5 to 15 minutes.</p>
+        </div>
+        <div class="faq-item">
+            <h4>Can I use it on multiple devices?</h4>
+            <p>You can install the service on as many devices as you want, but you can only stream on one device at a time (unless you purchase a multi-room plan).</p>
+        </div>
+        <div class="faq-item">
+            <h4>What internet speed do I need?</h4>
+            <p>For HD streaming, we recommend at least 15 Mbps. For 4K streaming, 30+ Mbps is recommended for the best experience.</p>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <div class="footer-secure">
-                <i class="fa-solid fa-lock"></i> 100% Secure Checkout Guaranteed
+            <h3>Secure Payment Methods</h3>
+            <div class="payment-methods">
+                <i class="fa-brands fa-cc-visa"></i>
+                <i class="fa-brands fa-cc-mastercard"></i>
+                <i class="fa-brands fa-cc-paypal"></i>
+                <i class="fa-brands fa-bitcoin"></i>
             </div>
-            <p class="footer-text">Need help? Contact us via WhatsApp: +1 (203) 547-2606 or Email: contact@iptvsubs.site</p>
-            <p class="footer-text" style="opacity: 0.5;">&copy; 2026 TVFlex. All rights reserved.</p>
+            <p style="color: var(--text-muted); margin-bottom: 2rem;">
+                Support: contact@iptvsubs.site | WhatsApp: +1 (203) 547-2606
+            </p>
+            <p style="opacity: 0.4; font-size: 0.8rem;">&copy; 2026 TVFlex Media Group. All rights reserved.</p>
         </div>
     </footer>
 
