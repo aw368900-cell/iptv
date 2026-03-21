@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TVFlex Platinum | The New Era of Digital Broadcast</title>
+    <title>TVFlex Platinum | Global 4K Streaming</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -17,7 +17,7 @@
             --text-main: #f0f2f5;
             --text-dim: #94a3b8;
             --border: rgba(255, 255, 255, 0.06);
-            --glass: rgba(18, 21, 26, 0.7);
+            --glass: rgba(18, 21, 26, 0.85);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; scroll-behavior: smooth; }
@@ -29,110 +29,66 @@
             overflow-x: hidden;
         }
 
-        /* --- UI Elements --- */
         .container { max-width: 1250px; margin: 0 auto; padding: 0 1.5rem; }
         .emerald-glow { color: var(--primary); text-shadow: 0 0 15px rgba(0, 255, 170, 0.3); }
-        
-        /* --- Floating Dock Nav --- */
+        .text-center { text-align: center; }
+
+        /* --- Floating Nav --- */
         nav {
             position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
-            width: 95%; max-width: 800px; z-index: 1000;
+            width: 95%; max-width: 900px; z-index: 1000;
             background: var(--glass); backdrop-filter: blur(20px);
             padding: 0.8rem 2rem; border-radius: 100px;
             border: 1px solid var(--border);
             display: flex; justify-content: space-between; align-items: center;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
-        .logo { font-size: 1.4rem; font-weight: 900; color: #fff; text-decoration: none; letter-spacing: -1px; }
+        .logo { font-size: 1.4rem; font-weight: 900; color: #fff; text-decoration: none; }
         .logo span { color: var(--primary); }
+        
+        .server-status { font-size: 0.75rem; display: flex; align-items: center; gap: 8px; color: var(--text-dim); }
+        .status-dot { width: 8px; height: 8px; background: var(--primary); border-radius: 50%; box-shadow: 0 0 10px var(--primary); animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
 
-        /* --- Hero Section --- */
-        .hero { padding: 12rem 0 6rem; position: relative; overflow: hidden; }
-        .hero-tag { 
-            background: rgba(0, 255, 170, 0.1); color: var(--primary); 
-            padding: 6px 16px; border-radius: 50px; font-size: 0.85rem; 
-            font-weight: 600; display: inline-block; margin-bottom: 1.5rem;
-            border: 1px solid rgba(0, 255, 170, 0.2);
-        }
+        /* --- Hero --- */
+        .hero { padding: 12rem 0 6rem; position: relative; }
         .hero h1 { font-size: clamp(3rem, 7vw, 5.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 2rem; }
         .hero p { font-size: 1.25rem; color: var(--text-dim); max-width: 700px; margin-bottom: 3rem; }
 
-        /* --- Bento Grid Features --- */
-        .bento-grid {
-            display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(2, 300px);
-            gap: 1.5rem; margin: 4rem 0;
-        }
-        .bento-item { 
-            background: var(--bg-card); border-radius: 32px; border: 1px solid var(--border);
-            padding: 2.5rem; position: relative; overflow: hidden; transition: 0.4s ease;
-        }
+        /* --- Bento Grid --- */
+        .bento-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin: 4rem 0; }
+        .bento-item { background: var(--bg-card); border-radius: 32px; border: 1px solid var(--border); padding: 2.5rem; transition: 0.4s; }
         .bento-item:hover { border-color: var(--primary); transform: translateY(-5px); }
-        .bento-1 { grid-column: span 2; }
-        .bento-2 { grid-column: span 2; }
-        .bento-3 { grid-column: span 1; }
-        .bento-4 { grid-column: span 2; }
-        .bento-5 { grid-column: span 1; }
+        .bento-large { grid-column: span 2; }
 
-        .bento-item i { font-size: 2rem; color: var(--primary); margin-bottom: 1rem; display: block; }
-        .bento-item h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
-        .bento-item p { color: var(--text-dim); font-size: 0.95rem; }
+        /* --- NEW: Countries Section --- */
+        .countries-strip { background: rgba(255,255,255,0.02); padding: 4rem 0; border-y: 1px solid var(--border); overflow: hidden; }
+        .flag-scroll { display: flex; gap: 50px; align-items: center; opacity: 0.6; }
+        .flag-item { display: flex; align-items: center; gap: 10px; white-space: nowrap; font-weight: 600; font-size: 1.1rem; }
+        .flag-item img { width: 30px; border-radius: 4px; }
 
-        /* --- Interactive How-To --- */
-        .steps-wrap { display: flex; justify-content: space-between; gap: 2rem; margin-top: 4rem; flex-wrap: wrap; }
-        .step-card { flex: 1; min-width: 250px; text-align: center; position: relative; }
-        .step-number { 
-            width: 50px; height: 50px; background: var(--primary); color: #000; 
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-weight: 800; margin: 0 auto 1.5rem; font-size: 1.2rem;
-            box-shadow: 0 0 20px rgba(0, 255, 170, 0.4);
-        }
-
-        /* --- Premium Pricing --- */
-        .pricing-section { background: #0b0e13; padding: 8rem 0; border-y: 1px solid var(--border); }
+        /* --- Pricing --- */
+        .pricing-section { padding: 8rem 0; background: #0b0e13; }
         .price-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
-        .price-card { 
-            background: var(--bg-deep); padding: 3rem 2rem; border-radius: 40px; 
-            border: 1px solid var(--border); transition: 0.4s; position: relative;
-        }
-        .price-card:hover { transform: scale(1.02); border-color: var(--primary); }
-        .price-card.featured { background: #1a1f26; border: 1px solid var(--primary); }
-        .price-header h4 { color: var(--text-dim); text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; }
+        .price-card { background: var(--bg-deep); padding: 3rem 2rem; border-radius: 40px; border: 1px solid var(--border); transition: 0.4s; position: relative; }
+        .price-card.featured { border: 2px solid var(--primary); background: #161a20; transform: scale(1.05); }
         .price-amount { font-size: 3.5rem; font-weight: 800; margin: 1rem 0; }
-        .price-amount span { font-size: 1.2rem; opacity: 0.4; }
 
         /* --- Buttons --- */
-        .btn { 
-            padding: 1rem 2.5rem; border-radius: 100px; text-decoration: none; font-weight: 600;
-            display: inline-block; transition: 0.3s; text-align: center; border: none; cursor: pointer;
-        }
+        .btn { padding: 1rem 2.5rem; border-radius: 100px; text-decoration: none; font-weight: 600; display: inline-block; transition: 0.3s; border: none; cursor: pointer; }
         .btn-primary { background: var(--primary); color: #000; }
-        .btn-primary:hover { background: #fff; transform: translateY(-3px); }
         .btn-outline { border: 1px solid var(--border); color: #fff; }
-        .btn-outline:hover { background: rgba(255,255,255,0.05); }
 
-        /* --- Custom Video Showcase Area --- */
-        .video-mockup {
-            width: 100%; height: 500px; background: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=1200');
-            background-size: cover; background-position: center; border-radius: 40px;
-            border: 8px solid #1a1f26; box-shadow: 0 50px 100px rgba(0,0,0,0.6);
-            display: flex; align-items: center; justify-content: center;
-        }
-        .play-btn { 
-            width: 80px; height: 80px; background: var(--primary); border-radius: 50%; 
-            display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: #000;
-            cursor: pointer; transition: 0.3s; animation: pulse-green 2s infinite;
-        }
-        @keyframes pulse-green { 0% { box-shadow: 0 0 0 0 rgba(0, 255, 170, 0.7); } 70% { box-shadow: 0 0 0 20px rgba(0, 255, 170, 0); } 100% { box-shadow: 0 0 0 0 rgba(0, 255, 170, 0); } }
+        /* --- NEW: Payments Bar --- */
+        .payment-methods { display: flex; justify-content: center; gap: 2rem; padding: 2rem 0; font-size: 2.5rem; opacity: 0.5; color: var(--text-main); }
+        .payment-methods i:hover { opacity: 1; color: var(--primary); transform: scale(1.1); transition: 0.3s; }
 
         /* --- Footer --- */
         footer { padding: 6rem 0 3rem; background: #050608; border-top: 1px solid var(--border); }
-        .footer-flex { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 3rem; }
+        .footer-flex { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 3rem; }
 
-        /* --- Mobile Responsive --- */
         @media (max-width: 900px) {
-            .bento-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
-            .bento-1, .bento-2, .bento-3, .bento-4, .bento-5 { grid-column: span 1; }
-            .hero h1 { font-size: 3rem; }
+            .bento-grid { grid-template-columns: 1fr; }
+            .bento-large { grid-column: span 1; }
         }
     </style>
 </head>
@@ -140,133 +96,98 @@
 
     <nav>
         <a href="#" class="logo">TV<span>FLEX</span></a>
-        <div style="display: flex; gap: 1.5rem; align-items: center;">
-            <a href="#features" style="color: var(--text-dim); text-decoration: none; font-size: 0.9rem;">Features</a>
-            <a href="#pricing" class="btn-primary" style="padding: 0.5rem 1.2rem; border-radius: 50px; text-decoration: none; color: #000; font-weight: 700; font-size: 0.8rem;">GET ACCESS</a>
+        <div class="server-status">
+            <div class="status-dot"></div>
+            GLOBAL SERVERS: 100% ONLINE
         </div>
+        <a href="#pricing" class="btn-primary" style="padding: 0.5rem 1.2rem; border-radius: 50px; text-decoration: none; color: #000; font-weight: 700; font-size: 0.8rem;">JOIN NOW</a>
     </nav>
 
     <header class="hero container">
-        <div class="hero-tag">2026 NEXT-GEN INFRASTRUCTURE</div>
-        <h1>Broadcast Beyond<br><span class="emerald-glow">The Boundaries.</span></h1>
-        <p>Unlock 25,000+ global channels and the world’s largest VOD library in native 4K. Engineered for those who refuse to compromise on quality.</p>
-        
+        <h1 class="animate__animated animate__fadeIn">The Future of <br><span class="emerald-glow">Global Media.</span></h1>
+        <p>Premium 4K IPTV infrastructure serving 20+ countries with zero latency. Every channel, every sport, every movie—instantly.</p>
         <div style="display: flex; gap: 1rem;">
-            <a href="#pricing" class="btn btn-primary">Start Watching Now</a>
-            <a href="https://wa.me/+12035472606" class="btn btn-outline"><i class="fa-brands fa-whatsapp"></i> Live Chat</a>
-        </div>
-
-        <div style="margin-top: 5rem;">
-            <div class="video-mockup">
-                <div class="play-btn"><i class="fa-solid fa-play"></i></div>
-            </div>
+            <a href="#pricing" class="btn btn-primary">Choose Your Plan</a>
+            <a href="#coverage" class="btn btn-outline">Check Coverage</a>
         </div>
     </header>
 
-    <section class="container" id="features" style="padding: 6rem 0;">
-        <h2 style="font-size: 2.5rem; text-align: center; margin-bottom: 4rem;">Designed for <span class="emerald-glow">The Pro Viewer</span></h2>
-        
-        <div class="bento-grid">
-            <div class="bento-item bento-1">
-                <i class="fa-solid fa-microchip"></i>
-                <h3>Titanium Servers</h3>
-                <p>We use globally distributed edge servers to ensure < 150ms latency during live broadcasts.</p>
-            </div>
-            <div class="bento-item bento-2">
-                <i class="fa-solid fa-layer-group"></i>
-                <h3>Multi-Source VOD</h3>
-                <p>Access originals from Netflix, Disney+, Prime, and HBO in a single, unified interface.</p>
-            </div>
-            <div class="bento-item bento-3">
-                <i class="fa-solid fa-shield-halved"></i>
-                <h3>Built-in VPN</h3>
-                <p>No ISP throttling. Our streams are encrypted to hide IPTV traffic from your provider.</p>
-            </div>
-            <div class="bento-item bento-4">
-                <i class="fa-solid fa-mobile-screen-button"></i>
-                <h3>True Cross-Platform</h3>
-                <p>Start watching on your TV, continue on your phone. Perfect synchronization across every OS.</p>
-            </div>
-            <div class="bento-item bento-5">
-                <i class="fa-solid fa-clock-rotate-left"></i>
-                <h3>7-Day Catch-up</h3>
-                <p>Never miss a live event again. Replay any show from the last week instantly.</p>
+    <section class="countries-strip" id="coverage">
+        <div class="container">
+            <p class="text-center" style="margin-bottom: 2rem; font-size: 0.9rem; letter-spacing: 2px; color: var(--text-dim);">OPTIMIZED FOR GLOBAL BROADCAST</p>
+            <div class="flag-scroll">
+                <div class="flag-item"><img src="https://flagcdn.com/us.svg"> USA</div>
+                <div class="flag-item"><img src="https://flagcdn.com/gb.svg"> UK & Ireland</div>
+                <div class="flag-item"><img src="https://flagcdn.com/ca.svg"> Canada</div>
+                <div class="flag-item"><img src="https://flagcdn.com/fr.svg"> France</div>
+                <div class="flag-item"><img src="https://flagcdn.com/de.svg"> Germany</div>
+                <div class="flag-item"><img src="https://flagcdn.com/es.svg"> Spain</div>
+                <div class="flag-item"><img src="https://flagcdn.com/it.svg"> Italy</div>
+                <div class="flag-item"><img src="https://flagcdn.com/ae.svg"> UAE</div>
             </div>
         </div>
     </section>
 
-    <section style="background: #12151a; padding: 8rem 0;">
-        <div class="container">
-            <h2 class="text-center" style="font-size: 2.5rem; margin-bottom: 4rem;">Get Streaming in <span class="emerald-glow">3 Steps</span></h2>
-            
-            <div class="steps-wrap">
-                <div class="step-card">
-                    <div class="step-number">1</div>
-                    <h4>Choose Your Plan</h4>
-                    <p style="color: var(--text-dim);">Select the duration that fits your needs.</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-number">2</div>
-                    <h4>Instant Activation</h4>
-                    <p style="color: var(--text-dim);">Receive your credentials via Email & WhatsApp in minutes.</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-number">3</div>
-                    <h4>Download & Play</h4>
-                    <p style="color: var(--text-dim);">Enter your details into our app and enjoy the show.</p>
-                </div>
+    <section class="container" style="padding: 6rem 0;">
+        <div class="bento-grid">
+            <div class="bento-item bento-large">
+                <i class="fa-solid fa-earth-americas"></i>
+                <h3>Worldwide Content</h3>
+                <p>Localized channels for Europe, America, and Middle East. No matter where you are, we have your home channels.</p>
+            </div>
+            <div class="bento-item">
+                <i class="fa-solid fa-gauge-high"></i>
+                <h3>10Gbps Pipes</h3>
+                <p>Massive bandwidth for 4K streaming.</p>
+            </div>
+            <div class="bento-item">
+                <i class="fa-solid fa-lock"></i>
+                <h3>Safe Stream</h3>
+                <p>AES-256 end-to-end encryption.</p>
             </div>
         </div>
     </section>
 
     <section class="pricing-section" id="pricing">
         <div class="container">
-            <h2 style="font-size: 3rem; text-align: center; margin-bottom: 4rem;">Transparent <span class="emerald-glow">Pricing</span></h2>
-            
+            <h2 class="text-center" style="font-size: 3rem; margin-bottom: 4rem;">Choose Your <span class="emerald-glow">Tier</span></h2>
             <div class="price-grid">
                 <div class="price-card">
-                    <div class="price-header"><h4>Starter</h4></div>
+                    <h4>Basic</h4>
                     <div class="price-amount">$10<span> /1 mo</span></div>
-                    <ul style="list-style: none; color: var(--text-dim); margin-bottom: 2rem;">
-                        <li style="margin-bottom: 0.5rem;"><i class="fa-solid fa-check" style="color:var(--primary)"></i> 25K+ Channels</li>
-                        <li style="margin-bottom: 0.5rem;"><i class="fa-solid fa-check" style="color:var(--primary)"></i> 4K / UHD Quality</li>
-                        <li style="margin-bottom: 0.5rem;"><i class="fa-solid fa-check" style="color:var(--primary)"></i> 24/7 Live Support</li>
-                    </ul>
-                    <a href="mailto:contact@iptvsubs.site" class="btn btn-outline" style="width: 100%;">Select Plan</a>
+                    <p style="color:var(--text-dim); margin-bottom: 2rem;">Full Access, 1 Device.</p>
+                    <a href="#" class="btn btn-outline" style="width: 100%;">Select</a>
                 </div>
-
                 <div class="price-card">
-                    <div class="price-header"><h4>Standard</h4></div>
+                    <h4>Quarterly</h4>
                     <div class="price-amount">$25<span> /3 mo</span></div>
-                    <ul style="list-style: none; color: var(--text-dim); margin-bottom: 2rem;">
-                        <li style="margin-bottom: 0.5rem;"><i class="fa-solid fa-check" style="color:var(--primary)"></i> Anti-Freeze v6.0</li>
-                        <li style="margin-bottom: 0.5rem;"><i class="fa-solid fa-check" style="color:var(--primary)"></i> All Sports & PPV</li>
-                        <li style="margin-bottom: 0.5rem;"><i class="fa-solid fa-check" style="color:var(--primary)"></i> EPG Guide Included</li>
-                    </ul>
-                    <a href="mailto:contact@iptvsubs.site" class="btn btn-outline" style="width: 100%;">Select Plan</a>
+                    <p style="color:var(--text-dim); margin-bottom: 2rem;">Savings of 20%.</p>
+                    <a href="#" class="btn btn-outline" style="width: 100%;">Select</a>
                 </div>
-
                 <div class="price-card featured">
-                    <div style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--primary); color: #000; padding: 4px 15px; border-radius: 20px; font-size: 0.7rem; font-weight: 800;">BEST VALUE</div>
-                    <div class="price-header"><h4>Premium</h4></div>
+                    <div style="background:var(--primary); color:#000; position:absolute; top:-15px; left:50%; transform:translateX(-50%); padding:4px 12px; border-radius:10px; font-weight:900; font-size:0.7rem;">MOST POPULAR</div>
+                    <h4>Yearly</h4>
                     <div class="price-amount">$55<span> /12 mo</span></div>
-                    <ul style="list-style: none; margin-bottom: 2rem;">
-                        <li style="margin-bottom: 0.5rem;"><i class="fa-solid fa-check" style="color:var(--primary)"></i> 12 Months + 3 FREE</li>
-                        <li style="margin-bottom: 0.5rem;"><i class="fa-solid fa-check" style="color:var(--primary)"></i> VIP Platinum Servers</li>
-                        <li style="margin-bottom: 0.5rem;"><i class="fa-solid fa-check" style="color:var(--primary)"></i> Dedicated Account Manager</li>
-                    </ul>
-                    <a href="mailto:contact@iptvsubs.site" class="btn btn-primary" style="width: 100%;">Get 15 Months</a>
+                    <p style="margin-bottom: 2rem;">+3 Months Free Bonus.</p>
+                    <a href="#" class="btn btn-primary" style="width: 100%;">Get Offer</a>
                 </div>
-
                 <div class="price-card">
-                    <div class="price-header"><h4>Lifetime</h4></div>
+                    <h4>Ultimate</h4>
                     <div class="price-amount">$95<span> /24 mo</span></div>
-                    <ul style="list-style: none; color: var(--text-dim); margin-bottom: 2rem;">
-                        <li style="margin-bottom: 0.5rem;"><i class="fa-solid fa-check" style="color:var(--primary)"></i> 2 Simultaneous Streams</li>
-                        <li style="margin-bottom: 0.5rem;"><i class="fa-solid fa-check" style="color:var(--primary)"></i> All Feature Updates</li>
-                        <li style="margin-bottom: 0.5rem;"><i class="fa-solid fa-check" style="color:var(--primary)"></i> Unlimited VOD Access</li>
-                    </ul>
-                    <a href="mailto:contact@iptvsubs.site" class="btn btn-outline" style="width: 100%;">Select Plan</a>
+                    <p style="color:var(--text-dim); margin-bottom: 2rem;">2 Simultaneous Streams.</p>
+                    <a href="#" class="btn btn-outline" style="width: 100%;">Select</a>
+                </div>
+            </div>
+
+            <div style="margin-top: 6rem;">
+                <p class="text-center" style="color:var(--text-dim); font-size: 0.8rem; letter-spacing: 1px; margin-bottom: 2rem;">SECURE CHECKOUT SUPPORTED BY</p>
+                <div class="payment-methods">
+                    <i class="fa-brands fa-cc-visa"></i>
+                    <i class="fa-brands fa-cc-mastercard"></i>
+                    <i class="fa-brands fa-cc-paypal"></i>
+                    <i class="fa-brands fa-bitcoin"></i>
+                    <i class="fa-brands fa-apple-pay"></i>
+                    <i class="fa-brands fa-google-pay"></i>
                 </div>
             </div>
         </div>
@@ -274,24 +195,21 @@
 
     <footer>
         <div class="container footer-flex">
-            <div style="max-width: 300px;">
+            <div>
                 <a href="#" class="logo">TV<span>FLEX</span></a>
-                <p style="color: var(--text-dim); margin-top: 1rem; font-size: 0.9rem;">The gold standard in IPTV broadcasting since 2019. Providing stable, secure, and premium content worldwide.</p>
+                <p style="color: var(--text-dim); margin-top: 1rem; max-width: 300px;">The industry leader in high-performance digital broadcasting. Experience the TVFlex difference.</p>
             </div>
             <div>
-                <h5 style="margin-bottom: 1.5rem;">Legal</h5>
-                <a href="#" style="display: block; color: var(--text-dim); text-decoration: none; margin-bottom: 0.5rem;">Terms of Service</a>
-                <a href="#" style="display: block; color: var(--text-dim); text-decoration: none; margin-bottom: 0.5rem;">Privacy Policy</a>
-                <a href="#" style="display: block; color: var(--text-dim); text-decoration: none; margin-bottom: 0.5rem;">Refunds</a>
+                <h5 style="margin-bottom: 1.5rem; color: var(--primary);">Navigation</h5>
+                <a href="#" style="display: block; color: var(--text-dim); text-decoration: none; margin-bottom: 0.5rem;">Setup Guide</a>
+                <a href="#" style="display: block; color: var(--text-dim); text-decoration: none; margin-bottom: 0.5rem;">Channel List</a>
+                <a href="#" style="display: block; color: var(--text-dim); text-decoration: none; margin-bottom: 0.5rem;">Support</a>
             </div>
             <div>
-                <h5 style="margin-bottom: 1.5rem;">Support</h5>
-                <p style="color: var(--text-dim); font-size: 0.9rem;">contact@iptvsubs.site</p>
-                <p style="color: var(--text-dim); font-size: 0.9rem;">WhatsApp: +1 (203) 547-2606</p>
+                <h5 style="margin-bottom: 1.5rem; color: var(--primary);">Contact</h5>
+                <p style="color: var(--text-dim);">contact@iptvsubs.site</p>
+                <p style="color: var(--text-dim);">WhatsApp: +1 203 547 2606</p>
             </div>
-        </div>
-        <div class="container text-center" style="margin-top: 5rem; color: #333; font-size: 0.8rem;">
-            &copy; 2026 TVFlex Media Group. All broadcast rights reserved.
         </div>
     </footer>
 
